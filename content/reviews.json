@@ -1,0 +1,46 @@
+{
+  "reviews": [
+    {
+      "name": "Tobi A.",
+      "city": "Lagos",
+      "rating": 5,
+      "text": "The tee is heavy and the print has not cracked after four washes.",
+      "sample": true
+    },
+    {
+      "name": "Chidera O.",
+      "city": "Abuja",
+      "rating": 5,
+      "text": "Oversized fit is exactly what the photos show. Delivery took two days.",
+      "sample": true
+    },
+    {
+      "name": "Femi K.",
+      "city": "Ibadan",
+      "rating": 5,
+      "text": "Ordered on WhatsApp, they replied in minutes and sent the size chart.",
+      "sample": true
+    },
+    {
+      "name": "Zainab M.",
+      "city": "Port Harcourt",
+      "rating": 5,
+      "text": "Bought the white tee for my brother. He has not taken it off.",
+      "sample": true
+    },
+    {
+      "name": "David E.",
+      "city": "Lagos",
+      "rating": 5,
+      "text": "Back print is sharp. People ask where I got it every time.",
+      "sample": true
+    },
+    {
+      "name": "Amaka N.",
+      "city": "Enugu",
+      "rating": 5,
+      "text": "Fabric feels thick without being hot. Easy to wash too.",
+      "sample": true
+    }
+  ]
+}

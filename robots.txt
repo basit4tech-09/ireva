@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# TODO: set your real domain
+Sitemap: https://YOUR-SITE.netlify.app/sitemap.xml

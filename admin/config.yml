@@ -1,0 +1,60 @@
+# Decap CMS for IREVA. Changes are saved to GitHub and Netlify rebuilds the site.
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true # remove when you deploy, or leave it: it is ignored on the live site
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "store"
+    label: "Store"
+    files:
+      - label: "Settings"
+        name: "settings"
+        file: "content/settings.json"
+        fields:
+          - { label: "Announcement bar", name: "announcement", widget: "string" }
+          - { label: "WhatsApp number (digits only, with country code)", name: "whatsapp", widget: "string" }
+          - { label: "Order email (Gmail)", name: "email", widget: "string" }
+          - { label: "Instagram link", name: "instagram", widget: "string" }
+          - { label: "TikTok link", name: "tiktok", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+
+      - label: "Products"
+        name: "products"
+        file: "content/products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "ID (no spaces, e.g. tee-black)", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Price (₦)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Category", name: "category", widget: "select", options: ["Hoodies", "T-shirts", "Joggers","Beanies", "Gym wear", "Tanks"] }
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - { label: "Second photo (shows on hover)", name: "hover_image", widget: "image", required: false }
+              - { label: "Sizes", name: "sizes", widget: "select", multiple: true, options: ["XS", "S", "M", "L", "XL", "XXL", "One size"] }
+              - { label: "Sold-out sizes", name: "sold_out_sizes", widget: "select", multiple: true, required: false, options: ["XS", "S", "M", "L", "XL", "XXL", "One size"] }
+              - { label: "Badge", name: "badge", widget: "select", required: false, options: ["", "New", "Popular"] }
+              - { label: "In stock", name: "in_stock", widget: "boolean", default: true }
+              - { label: "Show on home page", name: "featured", widget: "boolean", default: false }
+
+      - label: "Reviews"
+        name: "reviews"
+        file: "content/reviews.json"
+        fields:
+          - label: "Reviews"
+            name: "reviews"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "Stars (1 to 5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+              - { label: "Review", name: "text", widget: "text" }
+              - { label: "Sample review (turn off for real customer reviews)", name: "sample", widget: "boolean", default: false }
