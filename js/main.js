@@ -275,8 +275,45 @@
     $$("[data-cm]").forEach((cell) => { const cm = Number(cell.dataset.cm); cell.textContent = inches ? (Math.round(cm / 2.54 * 10) / 10).toString() : cm; });
     $$("[data-unit-label]").forEach((el) => { el.textContent = inches ? "in" : "cm"; });
   }));
-  const sent = $("[data-sent]");
-  if (sent && new URLSearchParams(location.search).get("sent") === "1") sent.hidden = false;
+   const contactForm = $("[data-contact-form]");
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const ok = $("[data-sent]"), bad = $("[data-contact-error]"), btn = contactForm.querySelector('button[type="submit"]');
+      ok.hidden = true; bad.hidden = true;
+      if (!contactForm.reportValidity()) return;
+      const data = new FormData(contactForm);
+      if (data.get("_honey")) return;
+      const to = content.settings && content.settings.email;
+      if (!to || to.includes("example.com")) { bad.textContent = "Messages are not switched on yet. Please use WhatsApp for now."; bad.hidden = false; return; }
+      const label = btn.textContent;
+      btn.disabled = true; btn.textContent = "Sending...";
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: "IREVA website message from " + data.get("name"),
+            _template: "table",
+            _captcha: "false",
+            _replyto: data.get("email"),
+            Name: data.get("name"),
+            Email: data.get("email"),
+            Message: data.get("query")
+          })
+        });
+        const out = await res.json();
+        if (!res.ok || String(out.success) !== "true") throw new Error("send failed");
+        contactForm.reset();
+        ok.hidden = false;
+      } catch (err) {
+        bad.textContent = "Could not send your message. Please try again or use WhatsApp.";
+        bad.hidden = false;
+      } finally {
+        btn.disabled = false; btn.textContent = label;
+      }
+    });
+  }
   $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 
   window.IREVA = { $, $$, h, icon, naira, reduce, content, ready: null };
