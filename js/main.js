@@ -200,19 +200,52 @@
   }
 
   /* Checkout: one order message, opened in WhatsApp or Gmail. */
-  function checkout(channel) {
+   async function checkout(channel) {
     const err = $("[data-checkout-error]");
     const customer = { name: $("#c-name").value.trim(), phone: $("#c-phone").value.trim(), address: $("#c-addr").value.trim() };
-    if (!customer.name || !customer.phone || !customer.address) { err.textContent = "Enter your name, phone and address first."; err.hidden = false; return; }
+    const show = (text, ok) => { err.textContent = text; err.style.color = ok ? "inherit" : ""; err.hidden = false; };
+    if (!customer.name || !customer.phone || !customer.address) { show("Enter your name, phone and address first."); return; }
     const s = content.settings;
     const unset = channel === "whatsapp" ? !s.whatsapp || /0{6,}/.test(s.whatsapp) : !s.email || s.email.includes("example.com");
-    if (unset) { err.textContent = "Ordering is not switched on yet. Please check back soon."; err.hidden = false; return; }
+    if (unset) { show("Ordering is not switched on yet. Please check back soon."); return; }
     err.hidden = true;
     const lines = items.map((i, n) => `${n + 1}. ${i.title} (${i.size}) x${i.qty} - ${naira(i.price * i.qty)}`);
     const message = ["Hello IREVA, I would like to place an order:", "", ...lines, "", `Total: ${naira(cart.total())}`, "", `Name: ${customer.name}`, `Phone: ${customer.phone}`, `Delivery address: ${customer.address}`].join("\n");
-    const url = channel === "whatsapp" ? `https://wa.me/${s.whatsapp}?text=${encodeURIComponent(message)}`
-      : `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(s.email)}&su=${encodeURIComponent("New IREVA order from " + customer.name)}&body=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener");
+
+    if (channel === "whatsapp") {
+      window.open(`https://wa.me/${s.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+      return;
+    }
+
+    /* Gmail: send the order straight to the store inbox via FormSubmit. */
+    const btn = document.querySelector('[data-checkout="gmail"]');
+    const label = btn.innerHTML;
+    btn.disabled = true; btn.textContent = "Sending...";
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(s.email)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: "New IREVA order from " + customer.name,
+          _template: "table",
+          _captcha: "false",
+          Name: customer.name,
+          Phone: customer.phone,
+          Address: customer.address,
+          Order: lines.join("\n"),
+          Total: naira(cart.total())
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || String(data.success) !== "true") throw new Error("send failed");
+      show("Order sent. We will contact you shortly to confirm.", true);
+    } catch (e) {
+      /* Fallback: open Gmail compose so the order is never lost. */
+      show("Could not send automatically. Opening Gmail instead.");
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(s.email)}&su=${encodeURIComponent("New IREVA order from " + customer.name)}&body=${encodeURIComponent(message)}`, "_blank", "noopener");
+    } finally {
+      btn.disabled = false; btn.innerHTML = label;
+    }
   }
   $$("[data-checkout]").forEach((b) => b.addEventListener("click", () => checkout(b.dataset.checkout)));
 
