@@ -49,7 +49,7 @@
   function applySettings() {
     const s = content.settings;
     const wa = `https://wa.me/${s.whatsapp || ""}?text=${encodeURIComponent("Hello IREVA, I have a question.")}`;
-    const links = { whatsapp: wa, email: `mailto:${s.email || ""}`, instagram: s.instagram, tiktok: s.tiktok };
+       const links = { whatsapp: wa, email: `mailto:${s.email || ""}`, instagram: s.instagram, tiktok: s.tiktok, snapchat: s.snapchat };
     $$("[data-link]").forEach((el) => { const url = links[el.dataset.link]; if (url) el.href = url; });
     $$("[data-text]").forEach((el) => { if (s[el.dataset.text]) el.textContent = s[el.dataset.text]; });
   }

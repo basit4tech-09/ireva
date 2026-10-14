@@ -21,6 +21,7 @@ collections:
           - { label: "Order email (Gmail)", name: "email", widget: "string" }
           - { label: "Instagram link", name: "instagram", widget: "string" }
           - { label: "TikTok link", name: "tiktok", widget: "string" }
+          - { label: "Snapchat link", name: "snapchat", widget: "string" }
           - { label: "Location", name: "location", widget: "string" }
 
       - label: "Products"
