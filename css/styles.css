@@ -1394,6 +1394,24 @@ main:focus {
 .page-head p {
   max-width: 56ch;
 }
+/* PAGE HEADS WITH A PHOTO*/
+.page-head--media{grid-template-columns: minmax(0,1fr); align-items: center;}
+.page-head__copy{display:grid; gap:var(--s3);}
+.page-head__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line); background: var(--onyx); }
+.page-head__img--top { object-position: 50% 30%; }
+@media (min-width: 801px) {
+  .page-head--media { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: var(--s7); }
+  .page-head__img { aspect-ratio: 5 / 4; }
+}
+
+/* Page heads with a photo background (Shop, About) */
+.page-head--photo { min-height: clamp(300px, 36vw, 520px); align-content: center; background-color: var(--onyx); background-repeat: no-repeat; background-position: right center; background-size: cover; }
+.page-head--shop  { background-image: url("../assets/images/shop-banner.jpg"); }
+.page-head--about { background-image: url("../assets/images/about-banner.jpg"); }
+@media (max-width: 800px) {
+  .page-head--shop  { background-image: linear-gradient(rgba(11,11,11,.6), rgba(11,11,11,.6)), url("../assets/images/shop-banner.jpg"); }
+  .page-head--about { background-image: linear-gradient(rgba(11,11,11,.6), rgba(11,11,11,.6)), url("../assets/images/about-banner.jpg"); }
+}
 .content {
   padding: var(--s7) var(--pad-x) var(--s8);
 }
