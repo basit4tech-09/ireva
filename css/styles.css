@@ -4,76 +4,26 @@
 
 /* 1 Fonts (self-hosted) */
 @font-face {
-  font-family: "Syne";
-  font-weight: 600;
-  font-display: swap;
-  src: url("../assets/fonts/syne-latin-600-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Syne";
+  font-family: "Archivo";
   font-weight: 800;
+  font-stretch: 62%;
   font-display: swap;
-  src: url("../assets/fonts/syne-latin-800-normal.woff2") format("woff2");
+  src: url("../assets/fonts/archivo-head.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Inter";
-  font-weight: 400;
+  font-family: "Archivo";
+  font-weight: 400 700;
+  font-stretch: 100%;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-400-normal.woff2") format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
-    U+FFFD;
+  src: url("../assets/fonts/archivo-body.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Inter";
-  font-weight: 400;
+  font-family: "Archivo";
+  font-weight: 400 800;
+  font-stretch: 62% 100%;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-ext-400-normal.woff2") format("woff2");
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
-    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Inter";
-  font-weight: 500;
-  font-display: swap;
-  src: url("../assets/fonts/inter-latin-500-normal.woff2") format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
-    U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-weight: 500;
-  font-display: swap;
-  src: url("../assets/fonts/inter-latin-ext-500-normal.woff2") format("woff2");
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
-    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: "Inter";
-  font-weight: 600;
-  font-display: swap;
-  src: url("../assets/fonts/inter-latin-600-normal.woff2") format("woff2");
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
-    U+FFFD;
-}
-@font-face {
-  font-family: "Inter";
-  font-weight: 600;
-  font-display: swap;
-  src: url("../assets/fonts/inter-latin-ext-600-normal.woff2") format("woff2");
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
-    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("../assets/fonts/archivo-naira.woff2") format("woff2");
+  unicode-range: U+20A6;
 }
 
 /* 2 Tokens. Dark and light are themes: put .is-dark or .is-light on any section. */
@@ -81,12 +31,12 @@
   --onyx: #0b0b0b;
   --charcoal: #1a1a1a;
   --ivory: #fdfbf7;
-  --font-display: "Syne", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
   --text-sm: 0.875rem;
   --text-lg: 1.125rem;
-  --text-xl: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
-  --text-hero: clamp(2rem, 0.2rem + 8.2vw, 6rem);
+  --text-xl: clamp(2rem, 1.3rem + 2.6vw, 3.4rem);
+  --text-hero: clamp(2.6rem, 0.4rem + 9.5vw, 6.5rem);
   --s1: 4px;
   --s2: 8px;
   --s3: 16px;
@@ -162,8 +112,10 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-stretch: 62%;
 }
 h3 {
   font-size: var(--text-lg);
@@ -275,7 +227,10 @@ main:focus {
   border: 1px solid var(--fg);
   background: var(--fg);
   color: var(--bg);
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  font-size:var(--text-sm);
   text-decoration: none;
   transition:
     background 0.35s var(--ease),
@@ -707,6 +662,8 @@ main:focus {
 .tile-name {
   display: block;
   font: 800 var(--text-lg)/1.1 var(--font-display);
+  font-stretch: 62%;
+  text-transform: uppercase;
 }
 .tile-cta {
   font-size: var(--text-sm);
@@ -1389,28 +1346,66 @@ main:focus {
   border-bottom: 1px solid var(--line);
 }
 .page-title {
-  font-size: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+  font-size: clamp(3rem, 1.8rem + 5vw, 6rem);
 }
 .page-head p {
   max-width: 56ch;
 }
 /* PAGE HEADS WITH A PHOTO*/
-.page-head--media{grid-template-columns: minmax(0,1fr); align-items: center;}
-.page-head__copy{display:grid; gap:var(--s3);}
-.page-head__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line); background: var(--onyx); }
-.page-head__img--top { object-position: 50% 30%; }
+.page-head--media {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+.page-head__copy {
+  display: grid;
+  gap: var(--s3);
+}
+.page-head__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  background: var(--onyx);
+}
+.page-head__img--top {
+  object-position: 50% 30%;
+}
 @media (min-width: 801px) {
-  .page-head--media { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: var(--s7); }
-  .page-head__img { aspect-ratio: 5 / 4; }
+  .page-head--media {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+    gap: var(--s7);
+  }
+  .page-head__img {
+    aspect-ratio: 5 / 4;
+  }
 }
 
 /* Page heads with a photo background (Shop, About) */
-.page-head--photo { min-height: clamp(300px, 36vw, 520px); align-content: center; background-color: var(--onyx); background-repeat: no-repeat; background-position: right center; background-size: cover; }
-.page-head--shop  { background-image: url("../assets/images/shop-banner.jpg"); }
-.page-head--about { background-image: url("../assets/images/about-banner.jpg"); }
+.page-head--photo {
+  min-height: clamp(300px, 36vw, 520px);
+  align-content: center;
+  background-color: var(--onyx);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+}
+.page-head--shop {
+  background-image: url("../assets/images/shop-banner.jpg");
+}
+.page-head--about {
+  background-image: url("../assets/images/about-banner.jpg");
+}
 @media (max-width: 800px) {
-  .page-head--shop  { background-image: linear-gradient(rgba(11,11,11,.6), rgba(11,11,11,.6)), url("../assets/images/shop-banner.jpg"); }
-  .page-head--about { background-image: linear-gradient(rgba(11,11,11,.6), rgba(11,11,11,.6)), url("../assets/images/about-banner.jpg"); }
+  .page-head--shop {
+    background-image:
+      linear-gradient(rgba(11, 11, 11, 0.6), rgba(11, 11, 11, 0.6)),
+      url("../assets/images/shop-banner.jpg");
+  }
+  .page-head--about {
+    background-image:
+      linear-gradient(rgba(11, 11, 11, 0.6), rgba(11, 11, 11, 0.6)),
+      url("../assets/images/about-banner.jpg");
+  }
 }
 .content {
   padding: var(--s7) var(--pad-x) var(--s8);
