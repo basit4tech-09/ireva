@@ -1,12 +1,9 @@
 {
   "products": [
     {
-      "id": "tee-black",
-      "title": "IREVA Oversized Tee, Black",
-      "price": 25000,
-      "category": "T-shirts",
-      "image": "assets/images/tee-black.jpg",
-      "hover_image": "assets/images/tee-black-back.jpg",
+      "badge": "New",
+      "price": 23000,
+      "featured": true,
       "sizes": [
         "S",
         "M",
@@ -15,28 +12,32 @@
         "XXL"
       ],
       "sold_out_sizes": [],
-      "badge": "New",
+      "hover_image": "assets/images/tee-black-back.jpg",
+      "title": "IREVA Oversized Tee, Black",
+      "id": "tee-black",
+      "image": "assets/images/tee-black.jpg",
       "in_stock": true,
-      "featured": true
+      "category": "T-shirts"
     },
     {
-      "id": "tee-white",
-      "title": "IREVA Oversized Tee, White",
-      "price": 25000,
-      "category": "T-shirts",
-      "image": "assets/images/tee-white.jpg",
-      "hover_image": "assets/images/tee-white-studio.jpg",
+      "badge": "New",
+      "price": 23000,
+      "featured": true,
       "sizes": [
         "S",
         "M",
         "L",
-        "XL",
         "XXL"
       ],
-      "sold_out_sizes": ["XL"],
-      "badge": "New",
+      "sold_out_sizes": [
+        "XL"
+      ],
+      "hover_image": "assets/images/tee-white-studio.jpg",
+      "title": "IREVA Oversized Tee, White",
+      "id": "tee-white",
+      "image": "assets/images/tee-white.jpg",
       "in_stock": true,
-      "featured": true
+      "category": "T-shirts"
     }
   ]
 }
